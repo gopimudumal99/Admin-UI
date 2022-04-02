@@ -1,0 +1,28 @@
+.paginationNumbers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin-top: -40px;
+}
+
+.paginationNumbers >li{
+    width: 30px;
+    text-align: center;
+    padding: 4px;
+    margin: 0px 10px;
+    font-size: 18px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.paginationNumbers>li:hover{
+    background-color: cyan;
+}
+.PagesBtn{
+    padding: 5px;
+}
+
+.paginationNumbers>li.active{
+    background-color: aqua;
+}

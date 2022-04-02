@@ -1,9 +1,21 @@
 import React from "react";
-import Search from "../../Search/Search";
 import Pagination from "../Pagination/Pagination";
 import DataList from "./DataList";
 import "./table.css";
-function ShowData({ data, searchFunction, deleteUser }) {
+import Search from "../Search/Search";
+
+function ShowData({
+  data,
+  searchFunction,
+  TotalPages,
+  deleteUser,
+  currentItems,
+  indexOfLastItem,
+  indexOfFirstItem,
+  prevPageButtonChange,
+  nextPageButtonChange,
+  currentPage,
+}) {
   return (
     <div>
       <Search searchFunction={searchFunction} data={data} />
@@ -27,8 +39,17 @@ function ShowData({ data, searchFunction, deleteUser }) {
               ))}
             </tbody>
           </table>
-                  <button className="deleteBtn">Delete</button>
-                  <Pagination/>
+          <button className="deleteBtn">Delete</button>
+          <Pagination
+            totalPages={TotalPages}
+            indexOfLastItem={indexOfLastItem}
+            indexOfFirstItem={indexOfFirstItem}
+            currentItems={currentItems}
+            filterData={data}
+            nextPageButtonChange={nextPageButtonChange}
+            prevPageButtonChange={prevPageButtonChange}
+            currentPage={currentPage}
+          />
         </>
       ) : (
         <h3 className="notFound">Not Found...</h3>

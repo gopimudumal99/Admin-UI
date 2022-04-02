@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./search.css";
 function Search({data, searchFunction }) {
   const [text, setText] = useState("");
+  
   const searchHandle = (e) => {
     setText(e.target.value);
      return text.length > 0 ?  searchFunction(text) : null;
