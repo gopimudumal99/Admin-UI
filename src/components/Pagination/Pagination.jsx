@@ -2,16 +2,20 @@ import React from "react";
 import "./Pagination.css";
 function Pagination({
   totalPages,
-  indexOfLastItem,
-  indexOfFirstItemm,
-  currentItems,
-  filterData,
   prevPageButtonChange,
   nextPageButtonChange,
   currentPage,
+  changePage,
 }) {
   return (
     <ul className="paginationNumbers">
+      <button
+        onClick={() => changePage(1)}
+        disabled={currentPage == 1}
+        className="PagesBtn"
+      >
+        First
+      </button>
       <button
         onClick={() => prevPageButtonChange()}
         disabled={currentPage == 1}
@@ -20,7 +24,11 @@ function Pagination({
         Prev
       </button>
       {totalPages.map((number) => (
-        <li className={currentPage == number ? "active" : null} key={number}>
+        <li
+          onClick={() => changePage(number)}
+          className={currentPage == number ? "active" : null}
+          key={number}
+        >
           {number}
         </li>
       ))}
@@ -30,6 +38,13 @@ function Pagination({
         className="PagesBtn"
       >
         Next
+      </button>
+      <button
+        onClick={() => changePage(totalPages.length)}
+        disabled={currentPage == totalPages.length}
+        className="PagesBtn"
+      >
+        Last
       </button>
     </ul>
   );

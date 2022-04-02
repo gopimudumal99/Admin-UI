@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Pagination from "../Pagination/Pagination";
 import DataList from "./DataList";
 import "./table.css";
@@ -9,13 +9,30 @@ function ShowData({
   searchFunction,
   TotalPages,
   deleteUser,
-  currentItems,
-  indexOfLastItem,
-  indexOfFirstItem,
   prevPageButtonChange,
   nextPageButtonChange,
   currentPage,
+  changePage,
+  deleteSelectedUser,
+  mainCheckBox,
+  checkBox,
+  updateUser,
+  details,
 }) {
+  const arr = [];
+  // const [checkBox, setChecked] = useState(false);
+  const checkBoxhandle = (e, userId) => {
+    if (e.target.checked) {
+      arr.push(userId);
+    } else {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == userId) {
+          arr.splice(i, 1);
+        }
+      }
+    }
+  };
+
   return (
     <div>
       <Search searchFunction={searchFunction} data={data} />
@@ -25,7 +42,13 @@ function ShowData({
             <thead>
               <tr>
                 <th>
-                  <input type="checkbox" name="" id="" />
+                  <input
+                    onChange={(e) => mainCheckBox(e)}
+                    defaultChecked={checkBox}
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
                 </th>
                 <th>Name</th>
                 <th>Email</th>
@@ -35,20 +58,27 @@ function ShowData({
             </thead>
             <tbody>
               {data.map((user) => (
-                <DataList deleteUser={deleteUser} key={user.id} user={user} />
+                <DataList
+                  deleteUser={deleteUser}
+                  checkBoxhandle={checkBoxhandle}
+                  key={user.id}
+                  user={user}
+                  checkBox={checkBox}
+                  updateUser={updateUser}
+                  
+                />
               ))}
             </tbody>
           </table>
-          <button className="deleteBtn">Delete</button>
+          <button className="deleteBtn" onClick={() => deleteSelectedUser(arr)}>
+            Delete
+          </button>
           <Pagination
             totalPages={TotalPages}
-            indexOfLastItem={indexOfLastItem}
-            indexOfFirstItem={indexOfFirstItem}
-            currentItems={currentItems}
-            filterData={data}
             nextPageButtonChange={nextPageButtonChange}
             prevPageButtonChange={prevPageButtonChange}
             currentPage={currentPage}
+            changePage={changePage}
           />
         </>
       ) : (

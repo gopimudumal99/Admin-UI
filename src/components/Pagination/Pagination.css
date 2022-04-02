@@ -21,6 +21,7 @@
 }
 .PagesBtn{
     padding: 5px;
+    margin: 0 20px;
 }
 
 .paginationNumbers>li.active{
