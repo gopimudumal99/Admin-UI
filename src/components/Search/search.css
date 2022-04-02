@@ -1,0 +1,12 @@
+.serchInput{
+    padding: 10px;
+    width: 70%;
+    border-radius: 10px;
+    outline: none;
+    margin: 20px 0px 10px 0px;
+}
+.searchBar {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
